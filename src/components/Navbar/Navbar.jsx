@@ -66,21 +66,29 @@ Books, and Login */}
       {/* user information */}
       <div className=" flex-col items-end">
         {user ? (
-          <img
-            className="tooltip"
-            data-tip={`${user?.displayName}`}
-            src={
-              user?.photoURL ? (
-                user?.photoURL
-              ) : (
-                <CgProfile className="text-4xl font-bold" />
-              )
-            }
-          />
+          //           <div className="tooltip" data-tip="hello">
+          //   <button className="btn">Hover me</button>
+          // </div>
+          <div className="tooltip tooltip-left" data-tip={user?.displayName}>
+            <img
+              className="tooltip w-10"
+              data-tip={`${user?.displayName}`}
+              src={
+                user?.photoURL ? (
+                  user?.photoURL
+                ) : (
+                  <div className="tooltip tooltip-left" data-tip="User Name">
+                    <CgProfile className="text-4xl font-bold " />
+                  </div>
+                )
+              }
+            />
+          </div>
         ) : (
-          <CgProfile className="text-4xl font-bold" />
+          <div className="tooltip tooltip-left" data-tip="User Name">
+            <CgProfile className="text-4xl font-bold " />
+          </div>
         )}
-        <p>User Name</p>
       </div>
     </div>
   );

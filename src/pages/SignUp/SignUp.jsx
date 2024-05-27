@@ -2,12 +2,25 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../Authentication/AuthProvider/AuthProvider";
 import { Helmet } from "react-helmet";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import Swal from "sweetalert2";
+import { FcGoogle } from "react-icons/fc";
 
 const SignUp = () => {
   const [error, setError] = useState(null);
-  const { createUser, user } = useContext(AuthContext);
+  const { createUser, user, googleSignIn } = useContext(AuthContext);
   const navigate = useNavigate();
 
+  //   Google Sign in function
+  const handleGoogleSignUp = () => {
+    googleSignIn()
+      .then((res) => console.log(res))
+      .catch((error) => {
+        setError(error?.message);
+      });
+  };
+
+  // Email password Sign up function
   const handleSignUp = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -22,14 +35,45 @@ const SignUp = () => {
         const newUser = result.user;
         navigate("/login");
         console.log(newUser);
+        axios.post("http://localhost:3000/users", newUser).then((res) => {
+          console.log(res.data);
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: `<h5 className="bg-gradient-to-r from-cyan-500 to-blue-500 ...">${user?.email} is registered successfully!</h5>`,
+
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        });
       })
       .catch((error) => {
         console.log(error);
+
         setError(error);
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: `${
+            error
+              ? (error.message ===
+                  "Firebase: Error (auth/email-already-in-use)." &&
+                  "Email already in use") ||
+                (error.message ===
+                  "Firebase: Error (auth/network-request-failed)." &&
+                  "Please check your network") ||
+                error.message === ""
+              : ""
+          }`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
       });
   };
 
-  return (
+  return user ? (
+    navigate("/login")
+  ) : (
     <div className=" bg-orange-200">
       <Helmet>
         <title>Skill Bridge || Sign Up</title>
@@ -79,7 +123,7 @@ const SignUp = () => {
           <p
             className={`${
               error ? "text-red-500" : "text-green-600"
-            } text-center`}
+            } text-center my-4`}
           >
             {error
               ? (error.message ===
@@ -91,7 +135,6 @@ const SignUp = () => {
                 error.message === ""
               : ""}
           </p>
-          <p>{user ? `Sign up successful ${user?.email}` : ""}</p>
         </div>
         <div className="w-full md:w-1/2 mx-auto">
           <input
@@ -108,6 +151,11 @@ const SignUp = () => {
           Login
         </Link>
       </p>
+      <p className="text-center my-2">Or</p>
+      <div className="flex flex-col gap-2 justify-center items-center py-6">
+        <p>Sign Up with</p>
+        <FcGoogle onClick={handleGoogleSignUp} className="text-5xl font-bold" />
+      </div>
     </div>
   );
 };
