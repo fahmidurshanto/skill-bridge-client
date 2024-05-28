@@ -3,10 +3,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../Authentication/AuthProvider/AuthProvider";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const [error, setError] = useState(null);
-  const { user, googleSignIn } = useContext(AuthContext);
+  const { user, googleSignIn, login } = useContext(AuthContext);
   const navigate = useNavigate();
 
   //   Google Sign in function
@@ -28,6 +29,27 @@ const Login = () => {
     const password = form.password.value;
     const user = { email, password };
     console.log(user);
+    login(email, password)
+      .then((res) => {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: `${res?.user?.email} in successfully`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      })
+      .catch((err) => {
+        setError(err?.message);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text:
+            `${
+              error?.message === "Firebase: Error (auth/invalid-credential)."
+            }` && "Invalid Email/ Password, Please check your  credentials",
+        });
+      });
   };
 
   return (
@@ -37,7 +59,7 @@ const Login = () => {
       </Helmet>
       {user ? (
         <h2 className="flex justify-center items-center h-[70vh] text-3xl text-purple-600">
-          Already Logged In
+          Logged In
           <span className="font-bold ml-2">{user?.email}</span>
         </h2>
       ) : (

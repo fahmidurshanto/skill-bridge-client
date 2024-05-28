@@ -9,6 +9,7 @@ import { FcGoogle } from "react-icons/fc";
 const SignUp = () => {
   const [error, setError] = useState(null);
   const { createUser, user, googleSignIn } = useContext(AuthContext);
+  console.log(user);
   const navigate = useNavigate();
 
   //   Google Sign in function
@@ -31,8 +32,8 @@ const SignUp = () => {
     const email = form.email.value;
     const photoUrl = form.photo_url.value;
     const password = form.password.value;
-    const user = { name, email, password, photoUrl };
-    console.log(user);
+    const loggedUser = { name, email, password, photoUrl };
+    console.log(loggedUser);
     createUser(email, password)
       .then((result) => {
         const newUser = result.user;
@@ -43,7 +44,7 @@ const SignUp = () => {
           Swal.fire({
             position: "top-end",
             icon: "success",
-            title: `<h5 className="bg-gradient-to-r from-cyan-500 to-blue-500 ...">${user?.email} is registered successfully!</h5>`,
+            title: `<h5 className="bg-gradient-to-r from-cyan-500 to-blue-500 ...">${loggedUser?.email} is registered successfully!</h5>`,
 
             showConfirmButton: false,
             timer: 1500,

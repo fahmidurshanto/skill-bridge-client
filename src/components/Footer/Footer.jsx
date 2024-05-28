@@ -1,3 +1,7 @@
+import { FaFacebook } from "react-icons/fa";
+
+import { FaGithubSquare } from "react-icons/fa";
+import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <footer className="shadow-2xl shadow-black mb-10 footer footer-center p-10 bg-yellow-700 text-primary-content">
@@ -12,6 +16,17 @@ const Footer = () => {
         </p>
         <p>Copyright © 2024 - All right reserved</p>
       </aside>
+      <div className="text-3xl flex justify-center items-center">
+        <Link to="https://www.facebook.com/mdfahmidurrahman.shanto.9/">
+          <FaFacebook className="text-white" />
+        </Link>
+
+        <br />
+        <Link to="https://github.com/fahmidurshanto">
+          {" "}
+          <FaGithubSquare className="text-white" />
+        </Link>
+      </div>
     </footer>
   );
 };
