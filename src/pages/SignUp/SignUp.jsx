@@ -14,7 +14,10 @@ const SignUp = () => {
   //   Google Sign in function
   const handleGoogleSignUp = () => {
     googleSignIn()
-      .then((res) => console.log(res))
+      .then((res) => {
+        console.log(res);
+        navigate("/");
+      })
       .catch((error) => {
         setError(error?.message);
       });
@@ -71,9 +74,7 @@ const SignUp = () => {
       });
   };
 
-  return user ? (
-    navigate("/login")
-  ) : (
+  return (
     <div className=" bg-orange-200">
       <Helmet>
         <title>Skill Bridge || Sign Up</title>
@@ -152,9 +153,10 @@ const SignUp = () => {
         </Link>
       </p>
       <p className="text-center my-2">Or</p>
-      <div className="flex flex-col gap-2 justify-center items-center py-6">
-        <p>Sign Up with</p>
-        <FcGoogle onClick={handleGoogleSignUp} className="text-5xl font-bold" />
+      <div className="flex flex-col gap-2 justify-center items-center pb-6">
+        <p onClick={handleGoogleSignUp} className="btn btn-outline">
+          Sign Up with <FcGoogle className="text-4xl font-bold" />
+        </p>
       </div>
     </div>
   );

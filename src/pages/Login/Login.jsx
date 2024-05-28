@@ -1,8 +1,26 @@
 import { Helmet } from "react-helmet";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../Authentication/AuthProvider/AuthProvider";
 
 const Login = () => {
+  const [error, setError] = useState(null);
+  const { user, googleSignIn } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  //   Google Sign in function
+  const handleGoogleSignUp = () => {
+    googleSignIn()
+      .then((res) => {
+        console.log(res);
+        navigate("/");
+      })
+      .catch((err) => {
+        setError(err?.message);
+      });
+  };
+
   const handleLogin = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -17,50 +35,58 @@ const Login = () => {
       <Helmet>
         <title>Skill Bridge || Login</title>
       </Helmet>
-      <div className="h-[80vh] bg-orange-200">
-        <h3 className="text-4xl text-center  mb-5 pt-5 font-bold">
-          Login here
-        </h3>
-        <form className="p-10  rounded-md " onSubmit={handleLogin}>
-          {/* email input field */}
-          <div className="flex flex-col  items-center p-3">
-            <input
-              className="p-3 w-full md:w-1/2 text-gray-500 shadow-md shadow-gray-500  rounded-md"
-              type="text"
-              name="email"
-              placeholder="Email"
-            />
+      {user ? (
+        <h2 className="flex justify-center items-center h-[70vh] text-3xl text-purple-600">
+          Already Logged In
+          <span className="font-bold ml-2">{user?.email}</span>
+        </h2>
+      ) : (
+        <div className="h-[80vh] bg-orange-200">
+          <h3 className="text-4xl text-center  mb-5 pt-5 font-bold">
+            Login here
+          </h3>
+          <form className="p-10  rounded-md " onSubmit={handleLogin}>
+            {/* email input field */}
+            <div className="flex flex-col  items-center p-3">
+              <input
+                className="p-3 w-full md:w-1/2 text-gray-500 shadow-md shadow-gray-500  rounded-md"
+                type="text"
+                name="email"
+                placeholder="Email"
+              />
+            </div>
+            {/* email input field */}
+            <div className="flex flex-col  items-center p-3 ">
+              <input
+                className="p-3 w-full md:w-1/2 text-gray-500 shadow-md shadow-gray-500  rounded-md"
+                type="password"
+                name="password"
+                placeholder="Password"
+              />
+            </div>
+            <div className="w-full md:w-1/2 mx-auto">
+              <input
+                className="py-3 px-0 w-full  font-bold btn-outline text-xl rounded-md"
+                type="submit"
+                value="Login"
+              />
+            </div>
+          </form>
+          <p className="text-center">
+            New to Skill Bridge?{" "}
+            <Link to="/signUp" className="text-violet-500 font-bold">
+              Sign Up
+            </Link>{" "}
+            here.
+          </p>
+          <p className="text-center my-2">Or</p>
+          <div className="flex flex-col gap-2 justify-center items-center">
+            <p onClick={handleGoogleSignUp} className="btn btn-outline">
+              Sign Up with <FcGoogle className="text-4xl font-bold" />
+            </p>
           </div>
-          {/* email input field */}
-          <div className="flex flex-col  items-center p-3 ">
-            <input
-              className="p-3 w-full md:w-1/2 text-gray-500 shadow-md shadow-gray-500  rounded-md"
-              type="password"
-              name="password"
-              placeholder="Password"
-            />
-          </div>
-          <div className="w-full md:w-1/2 mx-auto">
-            <input
-              className="py-3 px-0 w-full  font-bold btn-outline text-xl rounded-md"
-              type="submit"
-              value="Login"
-            />
-          </div>
-        </form>
-        <p className="text-center">
-          New to Skill Bridge?{" "}
-          <Link to="/signUp" className="text-violet-500 font-bold">
-            Sign Up
-          </Link>{" "}
-          here.
-        </p>
-        <p className="text-center my-2">Or</p>
-        <div className="flex flex-col gap-2 justify-center items-center">
-          <p>Sign Up with</p>
-          <FcGoogle className="text-5xl font-bold" />
         </div>
-      </div>
+      )}
     </div>
   );
 };

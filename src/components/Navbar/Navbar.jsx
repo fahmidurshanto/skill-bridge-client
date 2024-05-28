@@ -25,6 +25,9 @@ Books, and Login */}
       <li className="list-none font-semibold hover:bg-yellow-800 mx-3 p-1 rounded-md hover:text-white">
         <NavLink to="/myJobs">My Jobs</NavLink>
       </li>
+      <li className="list-none font-semibold hover:bg-yellow-800 mx-3 p-1 rounded-md hover:text-white">
+        <NavLink to="/blogs">Blogs</NavLink>
+      </li>
       <li
         onClick={logout}
         className="list-none font-semibold hover:bg-yellow-800 mx-3 p-1 rounded-e-badge  hover:text-white cursor-pointer"
@@ -66,12 +69,9 @@ Books, and Login */}
       {/* user information */}
       <div className=" flex-col items-end">
         {user ? (
-          //           <div className="tooltip" data-tip="hello">
-          //   <button className="btn">Hover me</button>
-          // </div>
           <div className="tooltip tooltip-left" data-tip={user?.displayName}>
             <img
-              className="tooltip w-10"
+              className="tooltip rounded-full w-10"
               data-tip={`${user?.displayName}`}
               src={
                 user?.photoURL ? (
