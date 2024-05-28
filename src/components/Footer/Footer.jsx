@@ -4,7 +4,7 @@ import { FaGithubSquare } from "react-icons/fa";
 import { Link } from "react-router-dom";
 const Footer = () => {
   return (
-    <footer className="shadow-2xl shadow-black mb-10 footer footer-center p-10 bg-yellow-700 text-primary-content">
+    <footer className="shadow-xl shadow-black mb-10 footer footer-center p-10 bg-yellow-700 text-primary-content">
       <aside>
         <img
           src="https://i.ibb.co/prGqXLn/skill-bridge-logo.jpg"

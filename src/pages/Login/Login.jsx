@@ -14,7 +14,13 @@ const Login = () => {
   const handleGoogleSignUp = () => {
     googleSignIn()
       .then((res) => {
-        console.log(res);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: `${res?.user?.displayName} logged in successfully`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
         navigate("/");
       })
       .catch((err) => {

@@ -17,6 +17,11 @@ const SignUp = () => {
     googleSignIn()
       .then((res) => {
         console.log(res);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: `Welcome ${res?.user?.displayName}. You signed up successfully`,
+        });
         navigate("/");
       })
       .catch((error) => {
