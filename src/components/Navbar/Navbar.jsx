@@ -14,7 +14,7 @@ Books, and Login */}
         <NavLink to="/">Home</NavLink>
       </li>
       <li className="list-none font-semibold hover:bg-yellow-800 mx-3 p-1 rounded-e-badge   hover:text-white">
-        <NavLink to="/addAJob">Add A Job</NavLink>
+        <NavLink to="/addJob">Add Job</NavLink>
       </li>
       <li className="list-none font-semibold hover:bg-yellow-800 mx-3 p-1 rounded-e-badge  hover:text-white">
         <NavLink to="/allJobs">All Jobs</NavLink>

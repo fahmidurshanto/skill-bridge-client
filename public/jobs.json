@@ -1,0 +1,348 @@
+{
+  "tabs": [
+    {
+      "category": "On Site Job",
+      "jobs": [
+        {
+          "title": "Full Stack Developer",
+          "postingDate": "2024-05-29",
+          "deadline": "2024-06-30",
+          "salaryRange": "$80,000 - $100,000",
+          "applicants": 25,
+          "viewDetails": "See details",
+          "job_category": "On Site Job"
+        },
+        {
+          "title": "Graphic Designer",
+          "postingDate": "2024-05-24",
+          "deadline": "2024-06-15",
+          "salaryRange": "$60,000 - $75,000",
+          "applicants": 18,
+          "viewDetails": "See details",
+          "job_category": "On Site Job"
+        },
+        {
+          "title": "Front-End Developer",
+          "postingDate": "2024-05-28",
+          "deadline": "2024-06-25",
+          "salaryRange": "$70,000 - $85,000",
+          "applicants": 31,
+          "viewDetails": "See details",
+          "job_category": "On Site Job"
+        },
+        {
+          "title": "Back-End Developer",
+          "postingDate": "2024-05-22",
+          "deadline": "2024-06-10",
+          "salaryRange": "$75,000 - $90,000",
+          "applicants": 22,
+          "viewDetails": "See details",
+          "job_category": "On Site Job"
+        },
+        {
+          "title": "MERN Developer",
+          "postingDate": "2024-05-29",
+          "deadline": "2024-06-20",
+          "salaryRange": "$85,000 - $100,000",
+          "applicants": 18,
+          "viewDetails": "See details",
+          "job_category": "On Site Job"
+        },
+        {
+          "title": "Software Developer (QA)",
+          "postingDate": "2024-05-25",
+          "deadline": "2024-06-18",
+          "salaryRange": "$65,000 - $75,000",
+          "applicants": 40,
+          "viewDetails": "See details",
+          "job_category": "On Site Job"
+        },
+        {
+          "title": "UX/UI Designer",
+          "postingDate": "2024-05-21",
+          "deadline": "2024-06-07",
+          "salaryRange": "$60,000 - $70,000",
+          "applicants": 25,
+          "viewDetails": "See details",
+          "job_category": "On Site Job"
+        },
+        {
+          "title": "Network Engineer",
+          "postingDate": "2024-05-23",
+          "deadline": "2024-06-12",
+          "salaryRange": "$80,000 - $95,000",
+          "applicants": 12,
+          "viewDetails": "See details",
+          "job_category": "On Site Job"
+        },
+        {
+          "title": "Systems Engineer",
+          "postingDate": "2024-05-27",
+          "deadline": "2024-06-24",
+          "salaryRange": "$70,000 - $85,000",
+          "applicants": 19,
+          "viewDetails": "See details",
+          "job_category": "On Site Job"
+        }
+      ]
+    },
+    {
+      "category": "Remote Job",
+      "jobs": [
+        {
+          "title": "Sales Associate",
+          "postingDate": "2024-05-22",
+          "deadline": "2024-06-10",
+          "salaryRange": "$15 - $18 per hour",
+          "applicants": 35,
+          "viewDetails": "See details",
+          "job_category": "Sales"
+        },
+        {
+          "title": "Content Writer",
+          "postingDate": "2024-05-21",
+          "deadline": "2024-06-07",
+          "salaryRange": "$50,000 - $60,000",
+          "applicants": 67,
+          "viewDetails": "See details",
+          "job_category": "Remote Job"
+        },
+        {
+          "title": "Back-End Developer",
+          "postingDate": "2024-05-22",
+          "deadline": "2024-06-10",
+          "salaryRange": "$75,000 - $90,000",
+          "applicants": 22,
+          "viewDetails": "See details",
+          "job_category": "Remote Job"
+        },
+        {
+          "title": "Social Media Manager",
+          "postingDate": "2024-05-23",
+          "deadline": "2024-06-12",
+          "salaryRange": "$55,000 - $65,000",
+          "applicants": 38,
+          "viewDetails": "See details",
+          "job_category": "Remote Job"
+        },
+        {
+          "title": "Graphic Designer",
+          "postingDate": "2024-05-24",
+          "deadline": "2024-06-15",
+          "salaryRange": "$60,000 - $75,000",
+          "applicants": 18,
+          "viewDetails": "See details",
+          "job_category": "Design"
+        },
+        {
+          "title": "Web Content Editor",
+          "postingDate": "2024-05-27",
+          "deadline": "2024-06-24",
+          "salaryRange": "$45,000 - $55,000",
+          "applicants": 29,
+          "viewDetails": "See details",
+          "job_category": "Remote Job"
+        },
+        {
+          "title": "MERN Developer",
+          "postingDate": "2024-05-29",
+          "deadline": "2024-06-20",
+          "salaryRange": "$85,000 - $100,000",
+          "applicants": 18,
+          "viewDetails": "See details",
+          "job_category": "Remote Job"
+        },
+        {
+          "title": "Software Developer (QA)",
+          "postingDate": "2024-05-25",
+          "deadline": "2024-06-18",
+          "salaryRange": "$65,000 - $75,000",
+          "applicants": 40,
+          "viewDetails": "See details",
+          "job_category": "Remote Job"
+        },
+        {
+          "title": "Data Analyst",
+          "postingDate": "2024-05-20",
+          "deadline": "2024-06-03",
+          "salaryRange": "$60,000 - $70,000",
+          "applicants": 52,
+          "viewDetails": "See details",
+          "job_category": "Data Science"
+        }
+      ]
+    },
+    {
+      "category": "Hybrid",
+      "jobs": [
+        {
+          "title": "Sales Manager (Hybrid)",
+          "postingDate": "2024-05-22",
+          "deadline": "2024-06-10",
+          "salaryRange": "$70,000 - $85,000",
+          "applicants": 22,
+          "viewDetails": "See details",
+          "job_category": "Hybrid"
+        },
+        {
+          "title": "Content Writer",
+          "postingDate": "2024-05-21",
+          "deadline": "2024-06-07",
+          "salaryRange": "$50,000 - $60,000",
+          "applicants": 67,
+          "viewDetails": "See details",
+          "job_category": "Remote Job"
+        },
+        {
+          "title": "Back-End Developer (Hybrid)",
+          "postingDate": "2024-05-22",
+          "deadline": "2024-06-10",
+          "salaryRange": "$75,000 - $90,000",
+          "applicants": 15,
+          "viewDetails": "See details",
+          "job_category": "Hybrid"
+        },
+        {
+          "title": "Marketing Manager (Hybrid)",
+          "postingDate": "2024-05-23",
+          "deadline": "2024-06-12",
+          "salaryRange": "$65,000 - $75,000",
+          "applicants": 31,
+          "viewDetails": "See details",
+          "job_category": "Hybrid"
+        },
+        {
+          "title": "UX/UI Designer (Hybrid)",
+          "postingDate": "2024-05-21",
+          "deadline": "2024-06-07",
+          "salaryRange": "$60,000 - $70,000",
+          "applicants": 25,
+          "viewDetails": "See details",
+          "job_category": "Hybrid"
+        },
+        {
+          "title": "Customer Success Manager (Hybrid)",
+          "postingDate": "2024-05-27",
+          "deadline": "2024-06-24",
+          "salaryRange": "$55,000 - $65,000",
+          "applicants": 42,
+          "viewDetails": "See details",
+          "job_category": "Hybrid"
+        },
+        {
+          "title": "MERN Developer",
+          "postingDate": "2024-05-29",
+          "deadline": "2024-06-20",
+          "salaryRange": "$85,000 - $100,000",
+          "applicants": 18,
+          "viewDetails": "See details",
+          "job_category": "Remote Job"
+        },
+        {
+          "title": "Software Developer (QA)",
+          "postingDate": "2024-05-25",
+          "deadline": "2024-06-18",
+          "salaryRange": "$65,000 - $75,000",
+          "applicants": 40,
+          "viewDetails": "See details",
+          "job_category": "Remote Job"
+        },
+        {
+          "title": "Business Analyst (Hybrid)",
+          "postingDate": "2024-05-20",
+          "deadline": "2024-06-03",
+          "salaryRange": "$60,000 - $70,000",
+          "applicants": 38,
+          "viewDetails": "See details",
+          "job_category": "Hybrid"
+        }
+      ]
+    },
+    {
+      "category": "Part Time",
+      "jobs": [
+        {
+          "title": "Barista",
+          "postingDate": "2024-05-28",
+          "deadline": "2024-06-21",
+          "salaryRange": "$12 - $15 per hour",
+          "applicants": 19,
+          "viewDetails": "See details",
+          "job_category": "Part Time"
+        },
+        {
+          "title": "Content Writer",
+          "postingDate": "2024-05-21",
+          "deadline": "2024-06-07",
+          "salaryRange": "$50,000 - $60,000",
+          "applicants": 67,
+          "viewDetails": "See details",
+          "job_category": "Remote Job"
+        },
+        {
+          "title": "Customer Service Representative (Part-Time)",
+          "postingDate": "2024-05-20",
+          "deadline": "2024-06-04",
+          "salaryRange": "$15 - $18 per hour",
+          "applicants": 45,
+          "viewDetails": "See details",
+          "job_category": "Part Time"
+        },
+        {
+          "title": "Social Media Manager (Part-Time)",
+          "postingDate": "2024-05-24",
+          "deadline": "2024-06-14",
+          "salaryRange": "$20 - $25 per hour",
+          "applicants": 21,
+          "viewDetails": "See details",
+          "job_category": "Part Time"
+        },
+        {
+          "title": "Web Content Editor (Part-Time)",
+          "postingDate": "2024-05-22",
+          "deadline": "2024-06-11",
+          "salaryRange": "$22 - $28 per hour",
+          "applicants": 12,
+          "viewDetails": "See details",
+          "job_category": "Part Time"
+        },
+        {
+          "title": "MERN Developer",
+          "postingDate": "2024-05-29",
+          "deadline": "2024-06-20",
+          "salaryRange": "$85,000 - $100,000",
+          "applicants": 18,
+          "viewDetails": "See details",
+          "job_category": "Remote Job"
+        },
+        {
+          "title": "Library Assistant (Part-Time)",
+          "postingDate": "2024-05-23",
+          "deadline": "2024-06-13",
+          "salaryRange": "$10 - $13 per hour",
+          "applicants": 33,
+          "viewDetails": "See details",
+          "job_category": "Part Time"
+        },
+        {
+          "title": "Software Developer (QA)",
+          "postingDate": "2024-05-25",
+          "deadline": "2024-06-18",
+          "salaryRange": "$65,000 - $75,000",
+          "applicants": 40,
+          "viewDetails": "See details",
+          "job_category": "Remote Job"
+        },
+        {
+          "title": "Data Analyst (Part-Time)",
+          "postingDate": "2024-05-27",
+          "deadline": "2024-06-20",
+          "salaryRange": "$30 - $35 per hour",
+          "applicants": 15,
+          "viewDetails": "see details",
+          "job_category": "Part Time"
+        }
+      ]
+    }
+  ]
+}

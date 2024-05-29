@@ -1,4 +1,4 @@
-import { FaFacebook } from "react-icons/fa";
+import { FaFacebook, FaGithub } from "react-icons/fa";
 
 import { FaGithubSquare } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -18,13 +18,13 @@ const Footer = () => {
       </aside>
       <div className="text-3xl flex justify-center items-center">
         <Link to="https://www.facebook.com/mdfahmidurrahman.shanto.9/">
-          <FaFacebook className="text-white" />
+          <FaFacebook className="text-sky-500 bg-white p-1 rounded-full" />
         </Link>
 
         <br />
         <Link to="https://github.com/fahmidurshanto">
           {" "}
-          <FaGithubSquare className="text-white" />
+          <FaGithub className="text-white bg-black p-1" />
         </Link>
       </div>
     </footer>
