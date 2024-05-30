@@ -10,6 +10,7 @@ const ApiProvider = ({ children }) => {
   const [remoteJobs, setRemoteJobs] = useState([]);
   const [hybridJobs, setHybridJobs] = useState([]);
   const [partTimeJobs, setPartTimeJobs] = useState([]);
+  const [allJobs, setAllJobs] = useState([]);
 
   //   onsite jobs
   useEffect(() => {
@@ -43,9 +44,17 @@ const ApiProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
+    axios.get();
+  }, []);
+
+  useEffect(() => {
     axios
       .get("http://localhost:3000/jobs")
-      .then((res) => setJobs(res.data))
+      .then((res) => {
+        setJobs(res.data);
+        const jobs = res.data.jobs;
+        setAllJobs(jobs);
+      })
       .catch((err) => console.log(err));
   }, []);
 
@@ -55,6 +64,7 @@ const ApiProvider = ({ children }) => {
     remoteJobs,
     hybridJobs,
     partTimeJobs,
+    allJobs,
   };
   return <ApiContext.Provider value={jobsInfo}>{children}</ApiContext.Provider>;
 };
