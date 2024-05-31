@@ -17,7 +17,7 @@ const CategoryTab = () => {
         </TabList>
 
         {/* Onsite jobs  */}
-        <TabPanel>
+        <TabPanel className="grid grid-cols-3">
           {onSiteJobs.map((onsiteJob) =>
             onsiteJob.jobs.map((job, idx) => {
               return (

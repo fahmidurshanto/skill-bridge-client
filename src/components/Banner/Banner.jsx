@@ -48,7 +48,7 @@ const Banner = () => {
           <input
             type="search"
             name="search"
-            className="p-3 rounded-md bg-transparent text-white border border-yellow-500 outline outline-yellow-500"
+            className="p-3 rounded-md bg-transparent text-gray-500 font-bold border border-yellow-500 outline outline-yellow-500"
             placeholder="Job title"
           />
           <button className="btn btn-outline btn-warning ml-2">Search</button>

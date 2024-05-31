@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet";
 import Banner from "../../components/Banner/Banner";
 import CategoryTab from "../../components/CategoryTab/CategoryTab";
+import Watch from "../../components/Watch/Watch";
 
 const Home = () => {
   return (
@@ -8,6 +9,7 @@ const Home = () => {
       <Helmet>
         <title>Skill Bridge || Home</title>
       </Helmet>
+      <Watch></Watch>
       <Banner></Banner>
       <CategoryTab></CategoryTab>
     </div>
