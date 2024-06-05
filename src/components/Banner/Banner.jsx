@@ -41,7 +41,7 @@ const Banner = () => {
         <h2 className="text-4xl text-center py-3 text-white font-semibold">
           Focus on skills & matching
         </h2>
-        <p className="text-yellow-500 font-semibold">
+        <p className="text-white font-semibold">
           We connect skilled professionals with the perfect job opportunities.
         </p>
         <div className="my-5">

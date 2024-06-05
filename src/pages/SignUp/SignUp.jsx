@@ -9,7 +9,6 @@ import { FcGoogle } from "react-icons/fc";
 const SignUp = () => {
   const [error, setError] = useState(null);
   const { createUser, user, googleSignIn } = useContext(AuthContext);
-  console.log(user);
   const navigate = useNavigate();
 
   //   Google Sign in function
@@ -22,7 +21,7 @@ const SignUp = () => {
           icon: "success",
           title: `Welcome ${res?.user?.displayName}. You signed up successfully`,
         });
-        navigate("/");
+        navigate("/update");
       })
       .catch((error) => {
         setError(error?.message);
@@ -42,7 +41,7 @@ const SignUp = () => {
     createUser(email, password)
       .then((result) => {
         const newUser = result.user;
-        navigate("/login");
+        navigate("/update");
         console.log(newUser);
         axios.post("http://localhost:3000/users", newUser).then((res) => {
           console.log(res.data);
@@ -81,76 +80,89 @@ const SignUp = () => {
   };
 
   return (
-    <div className=" bg-orange-200">
+    <div>
       <Helmet>
         <title>Skill Bridge || Sign Up</title>
       </Helmet>
-      <h3 className="text-4xl text-center  pt-5  font-bold">Sign Up here</h3>
-      <form className="p-10  rounded-md " onSubmit={handleSignUp}>
-        {/* name input field */}
-        <div className="flex flex-col  items-center p-3 ">
-          <input
-            className="p-3 w-full md:w-1/2 text-gray-500 shadow-md shadow-gray-500  rounded-md"
-            type="text"
-            name="name"
-            placeholder="Name"
-          />
-        </div>
-        {/* email input field */}
-        <div className="flex flex-col  items-center p-3 ">
-          <input
-            className="p-3 w-full md:w-1/2 text-gray-500 shadow-md shadow-gray-500  rounded-md"
-            type="text"
-            name="email"
-            placeholder="Email"
-            required
-          />
-        </div>
-        {/* Photo url input field */}
-        <div className="flex flex-col  items-center p-3  ">
-          <input
-            className="p-3 w-full md:w-1/2 text-gray-500 shadow-md shadow-gray-500  rounded-md"
-            type="text"
-            name="photo_url"
-            placeholder="Photo Url"
-            required
-          />
-        </div>
-        {/* password input field */}
-        <div className="flex flex-col  items-center p-3  ">
-          <input
-            className="p-3 w-full md:w-1/2 text-gray-500 shadow-md shadow-gray-500  rounded-md"
-            type="password"
-            name="password"
-            placeholder="Password"
-            required
-          />
-        </div>
-        <div>
-          <p
-            className={`${
-              error ? "text-red-500" : "text-green-600"
-            } text-center my-4`}
-          >
-            {error
-              ? (error.message ===
-                  "Firebase: Error (auth/email-already-in-use)." &&
-                  "Email already in use") ||
-                (error.message ===
-                  "Firebase: Error (auth/network-request-failed)." &&
-                  "Please check your network") ||
-                error.message === ""
-              : ""}
-          </p>
-        </div>
-        <div className="w-full md:w-1/2 mx-auto">
-          <input
-            className="py-3 w-full  font-bold btn-outline text-xl rounded-md"
-            type="submit"
-            value="Sign Up"
-          />
-        </div>
-      </form>
+      <h3 className="text-4xl text-center  pt-5  font-bold my-10 underline">
+        Sign Up here
+      </h3>
+      <div className="grid md:grid-cols-2">
+        <img
+          className="p-10 hidden md:block"
+          src="https://i.ibb.co/bLjx2j1/undraw-undraw-undraw-undraw-sign-up-ln1s-1-s4bc-1-ee41-1-kf4d.jpg"
+          alt=""
+        />
+        <form className="p-10  rounded-md " onSubmit={handleSignUp}>
+          {/* name input field */}
+          <div className="flex flex-col text-start  items-start p-3 ">
+            <legend className="font-semibold">Name</legend>
+            <input
+              className="p-3 w-full  text-gray-500 shadow-md shadow-gray-500  rounded-md"
+              type="text"
+              name="name"
+              placeholder="Name"
+            />
+          </div>
+          {/* email input field */}
+          <div className="flex flex-col  items-start p-3 ">
+            <legend className="font-semibold">Email</legend>
+            <input
+              className="p-3 w-full  text-gray-500 shadow-md shadow-gray-500  rounded-md"
+              type="text"
+              name="email"
+              placeholder="Email"
+              required
+            />
+          </div>
+          {/* Photo url input field */}
+          <div className="flex flex-col  items-start p-3  ">
+            <legend className="font-semibold">Photo URL</legend>
+            <input
+              className="p-3 w-full  text-gray-500 shadow-md shadow-gray-500  rounded-md"
+              type="text"
+              name="photo_url"
+              placeholder="Photo Url"
+              required
+            />
+          </div>
+          {/* password input field */}
+          <div className="flex flex-col  items-start p-3  ">
+            <legend className="font-semibold">Password</legend>
+            <input
+              className="p-3 w-full  text-gray-500 shadow-md shadow-gray-500  rounded-md"
+              type="password"
+              name="password"
+              placeholder="Password"
+              required
+            />
+          </div>
+          <div>
+            <p
+              className={`${
+                error ? "text-red-500" : "text-green-600"
+              } text-center my-4`}
+            >
+              {error
+                ? (error.message ===
+                    "Firebase: Error (auth/email-already-in-use)." &&
+                    "Email already in use") ||
+                  (error.message ===
+                    "Firebase: Error (auth/network-request-failed)." &&
+                    "Please check your network") ||
+                  error.message === ""
+                : ""}
+            </p>
+          </div>
+          <div className="w-full  flex flex-col items-start p-3">
+            <input
+              className="py-3 w-full  font-bold btn-outline text-xl rounded-md"
+              type="submit"
+              value="Sign up"
+            />
+          </div>
+        </form>
+      </div>
 
       <p className="text-center pb-5">
         Already have an account?{" "}

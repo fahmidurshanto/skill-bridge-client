@@ -7,7 +7,9 @@ const CategoryTab = () => {
     useContext(ApiContext);
 
   return (
+    // Tabs Lists
     <div className="p-8">
+      <h3 className="text-3xl font-semibold text-center">Available Jobs</h3>
       <Tabs className="p-10">
         <TabList>
           {jobs.map((job, idx) => (
@@ -17,11 +19,11 @@ const CategoryTab = () => {
         </TabList>
 
         {/* Onsite jobs  */}
-        <TabPanel className="grid grid-cols-3">
+        <TabPanel className="border">
           {onSiteJobs.map((onsiteJob) =>
             onsiteJob.jobs.map((job, idx) => {
               return (
-                <div key={idx} className="flex">
+                <div key={idx} className="flex border">
                   <div className="p-10">
                     <h1 className="text-2xl">Job Title: {job.title}</h1>
                     <p className="text-gray-500">
@@ -51,11 +53,11 @@ const CategoryTab = () => {
         </TabPanel>
 
         {/* Remote jobs */}
-        <TabPanel>
+        <TabPanel className="border">
           {remoteJobs.map((remoteJob) =>
             remoteJob.jobs.map((job, idx) => {
               return (
-                <div key={idx} className="p-10">
+                <div key={idx} className="p-10 border">
                   <h1 className="text-2xl">Job Title: {job.title}</h1>
                   <p className="text-gray-500">Category: {job?.job_category}</p>
                   <p className="text-gray-500">Posted By: </p>
@@ -81,11 +83,11 @@ const CategoryTab = () => {
         </TabPanel>
 
         {/* Hybrid jobs */}
-        <TabPanel>
+        <TabPanel className="border">
           {hybridJobs.map((hybridJob) =>
             hybridJob.jobs.map((job, idx) => {
               return (
-                <div key={idx} className="p-10">
+                <div key={idx} className="p-10 border">
                   <h1 className="text-2xl">Job Title: {job.title}</h1>
                   <p className="text-gray-500">Category: {job?.job_category}</p>
                   <p className="text-gray-500">Posted By: </p>
@@ -110,11 +112,11 @@ const CategoryTab = () => {
           )}
         </TabPanel>
         {/* Part time jobs */}
-        <TabPanel>
+        <TabPanel className="border">
           {partTimeJobs.map((partTimeJob) =>
             partTimeJob.jobs.map((job, idx) => {
               return (
-                <div key={idx} className="p-10">
+                <div key={idx} className="p-10 border">
                   <h1 className="text-2xl">Job Title: {job.title}</h1>
                   <p className="text-gray-500">Category: {job?.job_category}</p>
                   <p className="text-gray-500">Posted By: </p>
@@ -138,11 +140,11 @@ const CategoryTab = () => {
             })
           )}
         </TabPanel>
-        <TabPanel>
+        <TabPanel className="border">
           {remoteJobs.map((remoteJob) =>
             remoteJob.jobs.map((job, idx) => {
               return (
-                <div key={idx} className="p-10">
+                <div key={idx} className="p-10 border">
                   <h1 className="text-2xl">Job Title: {job.title}</h1>
                   <p className="text-gray-500">Category: {job?.job_category}</p>
                   <p className="text-gray-500">Posted By: </p>

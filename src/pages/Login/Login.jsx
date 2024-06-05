@@ -7,13 +7,16 @@ import Swal from "sweetalert2";
 
 const Login = () => {
   const [error, setError] = useState(null);
-  const { user, googleSignIn, login } = useContext(AuthContext);
+  const { user, googleSignIn, login, loading } = useContext(AuthContext);
   const navigate = useNavigate();
 
   //   Google Sign in function
   const handleGoogleSignUp = () => {
     googleSignIn()
       .then((res) => {
+        if (loading) {
+          return <span className="loading loading-dots loading-lg"></span>;
+        }
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -37,6 +40,9 @@ const Login = () => {
     console.log(user);
     login(email, password)
       .then((res) => {
+        if (loading) {
+          return <span className="loading loading-dots loading-lg"></span>;
+        }
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -69,37 +75,46 @@ const Login = () => {
           <span className="font-bold ml-2">{user?.email}</span>
         </h2>
       ) : (
-        <div className="h-[80vh] bg-orange-200">
-          <h3 className="text-4xl text-center  mb-5 pt-5 font-bold">
+        <div className="">
+          <h3 className="text-4xl text-center  mb-5 pt-5 font-bold underline">
             Login here
           </h3>
-          <form className="p-10  rounded-md " onSubmit={handleLogin}>
-            {/* email input field */}
-            <div className="flex flex-col  items-center p-3">
-              <input
-                className="p-3 w-full md:w-1/2 text-gray-500 shadow-md shadow-gray-500  rounded-md"
-                type="text"
-                name="email"
-                placeholder="Email"
-              />
-            </div>
-            {/* email input field */}
-            <div className="flex flex-col  items-center p-3 ">
-              <input
-                className="p-3 w-full md:w-1/2 text-gray-500 shadow-md shadow-gray-500  rounded-md"
-                type="password"
-                name="password"
-                placeholder="Password"
-              />
-            </div>
-            <div className="w-full md:w-1/2 mx-auto">
-              <input
-                className="py-3 px-0 w-full  font-bold btn-outline text-xl rounded-md"
-                type="submit"
-                value="Login"
-              />
-            </div>
-          </form>
+          <div className="grid md:grid-cols-2">
+            <img
+              className="p-10 my-10 hidden md:block"
+              src="https://i.ibb.co/8P53FdH/undraw-Login-re-4vu2.jpg"
+              alt="login"
+            />
+            <form className="p-10  rounded-md mt-16 " onSubmit={handleLogin}>
+              {/* email input field */}
+              <div className="flex flex-col  items-start p-3">
+                <legend className="font-semibold">Email</legend>
+                <input
+                  className="p-3 w-full  text-gray-500 shadow-md shadow-gray-500  rounded-md"
+                  type="text"
+                  name="email"
+                  placeholder="Email"
+                />
+              </div>
+              {/* email input field */}
+              <div className="flex flex-col  items-start p-3 ">
+                <legend className="font-semibold">Password</legend>
+                <input
+                  className="p-3 w-full  text-gray-500 shadow-md shadow-gray-500  rounded-md"
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                />
+              </div>
+              <div className="w-full  mx-auto">
+                <input
+                  className="py-3 px-0 w-full  font-bold btn-outline text-xl rounded-md"
+                  type="submit"
+                  value="Login"
+                />
+              </div>
+            </form>
+          </div>
           <p className="text-center">
             New to Skill Bridge?{" "}
             <Link to="/signUp" className="text-violet-500 font-bold">
@@ -108,9 +123,9 @@ const Login = () => {
             here.
           </p>
           <p className="text-center my-2">Or</p>
-          <div className="flex flex-col gap-2 justify-center items-center">
+          <div className="flex flex-col gap-2 justify-center items-center mb-10">
             <p onClick={handleGoogleSignUp} className="btn btn-outline">
-              Sign Up with <FcGoogle className="text-4xl font-bold" />
+              Sign In with <FcGoogle className="text-4xl font-bold" />
             </p>
           </div>
         </div>

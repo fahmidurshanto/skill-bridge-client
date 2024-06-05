@@ -33,7 +33,7 @@ const Watch = () => {
   }, []);
 
   return (
-    <div className="flex justify-between items-center bg-violet-600 my-3 ">
+    <div className="flex justify-between items-center bg-violet-600 my-10 ">
       <h4 className="px-10 animate__animated animate__backInLeft text-2xl font-semibold text-white">
         Find your perfect tech job and launch your career in innovation...
       </h4>

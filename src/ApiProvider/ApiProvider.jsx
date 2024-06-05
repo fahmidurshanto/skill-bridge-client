@@ -43,10 +43,7 @@ const ApiProvider = ({ children }) => {
       .catch((error) => console.log(error.message));
   }, []);
 
-  useEffect(() => {
-    axios.get();
-  }, []);
-
+  // all jobs
   useEffect(() => {
     axios
       .get("http://localhost:3000/jobs")
