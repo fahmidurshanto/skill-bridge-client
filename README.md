@@ -2,6 +2,8 @@
 
 React.js
 React Router
-Tailwind css
+Tailwind
 DaisyUI
 Firebase
+React Responsive Carousel
+
