@@ -4,6 +4,7 @@ import { FcGoogle } from "react-icons/fc";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../Authentication/AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
+import "animate.css";
 
 const Login = () => {
   const [error, setError] = useState(null);
@@ -40,16 +41,16 @@ const Login = () => {
     console.log(user);
     login(email, password)
       .then((res) => {
-        if (loading) {
-          return <span className="loading loading-dots loading-lg"></span>;
-        }
         Swal.fire({
           position: "top-end",
           icon: "success",
-          title: `${res?.user?.email} in successfully`,
+          title: `${res?.user?.displayName} you have successfully logged in.`,
           showConfirmButton: false,
           timer: 1500,
         });
+        if (loading) {
+          return <span className="loading loading-dots loading-lg"></span>;
+        }
       })
       .catch((err) => {
         setError(err?.message);
@@ -70,9 +71,9 @@ const Login = () => {
         <title>Skill Bridge || Login</title>
       </Helmet>
       {user ? (
-        <h2 className="flex justify-center items-center h-[70vh] text-3xl text-purple-600">
+        <h2 className="flex justify-center items-center h-[70vh] text-3xl text-purple-600 animate__animated animate__bounce">
           Logged In
-          <span className="font-bold ml-2">{user?.email}</span>
+          <span className="font-bold ml-2">{user?.displayName}</span>
         </h2>
       ) : (
         <div className="">

@@ -2,15 +2,15 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../Authentication/AuthProvider/AuthProvider";
 import { Helmet } from "react-helmet";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
 import Swal from "sweetalert2";
 import { FcGoogle } from "react-icons/fc";
+import { updateProfile } from "firebase/auth";
+import axios from "axios";
 
 const SignUp = () => {
   const [error, setError] = useState(null);
-  const { createUser, user, googleSignIn } = useContext(AuthContext);
+  const { createUser, googleSignIn } = useContext(AuthContext);
   const navigate = useNavigate();
-
   //   Google Sign in function
   const handleGoogleSignUp = () => {
     googleSignIn()
@@ -34,49 +34,38 @@ const SignUp = () => {
     const form = e.target;
     const name = form.name.value;
     const email = form.email.value;
-    const photoUrl = form.photo_url.value;
+    const photo = form.photo_url.value;
     const password = form.password.value;
-    const loggedUser = { name, email, password, photoUrl };
-    console.log(loggedUser);
     createUser(email, password)
-      .then((result) => {
-        const newUser = result.user;
-        navigate("/update");
-        console.log(newUser);
-        axios.post("http://localhost:3000/users", newUser).then((res) => {
-          console.log(res.data);
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: `<h5 className="bg-gradient-to-r from-cyan-500 to-blue-500 ...">${loggedUser?.email} is registered successfully!</h5>`,
-
-            showConfirmButton: false,
-            timer: 1500,
-          });
+      .then((response) => {
+        console.log(response.user);
+        updateProfile(response.user, {
+          displayName: name,
+          photoURL: photo,
         });
-      })
-      .catch((error) => {
-        console.log(error);
+        axios
+          .post("http://localhost:3000/users", response?.user)
+          .then((res) => {
+            console.log(res.data);
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: `<h5 className="bg-gradient-to-r from-cyan-500 to-blue-500 ...">${response?.user?.displayName} is registered successfully!</h5>`,
 
-        setError(error);
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          });
+        navigate("/login");
         Swal.fire({
           position: "top-end",
-          icon: "error",
-          title: `${
-            error
-              ? (error.message ===
-                  "Firebase: Error (auth/email-already-in-use)." &&
-                  "Email already in use") ||
-                (error.message ===
-                  "Firebase: Error (auth/network-request-failed)." &&
-                  "Please check your network") ||
-                error.message === ""
-              : ""
-          }`,
+          icon: "success",
+          title: `${response?.user?.displayName} logged in successfully`,
           showConfirmButton: false,
           timer: 1500,
         });
-      });
+      })
+      .catch((error) => console.log(error.message));
   };
 
   return (

@@ -2,9 +2,11 @@ import { useContext } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import { ApiContext } from "../../ApiProvider/ApiProvider";
+import { AuthContext } from "../../Authentication/AuthProvider/AuthProvider";
 const CategoryTab = () => {
   const { onSiteJobs, jobs, remoteJobs, hybridJobs, partTimeJobs } =
     useContext(ApiContext);
+  const { user } = useContext(AuthContext);
 
   return (
     // Tabs Lists
@@ -25,11 +27,11 @@ const CategoryTab = () => {
               return (
                 <div key={idx} className="flex border">
                   <div className="p-10">
-                    <h1 className="text-2xl">Job Title: {job.title}</h1>
+                    <h1 className="text-2xl">Job Title: {job?.title}</h1>
                     <p className="text-gray-500">
                       Category: {job?.job_category}
                     </p>
-                    <p className="text-gray-500">Posted By: </p>
+                    <p className="text-gray-500">Posted By:</p>
                     <p className="text-gray-500">
                       Posting Date: {job?.postingDate}
                     </p>
