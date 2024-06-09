@@ -1,14 +1,17 @@
 import { Helmet } from "react-helmet";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../Authentication/AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 import "animate.css";
+import axios from "axios";
 
 const Login = () => {
   const [error, setError] = useState(null);
   const { user, googleSignIn, login, loading } = useContext(AuthContext);
+  const location = useLocation();
+  console.log(location);
   const navigate = useNavigate();
 
   //   Google Sign in function
@@ -37,8 +40,8 @@ const Login = () => {
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    const user = { email, password };
-    console.log(user);
+    const user = { email };
+
     login(email, password)
       .then((res) => {
         Swal.fire({
@@ -48,6 +51,15 @@ const Login = () => {
           showConfirmButton: false,
           timer: 1500,
         });
+        axios
+          .post("http://localhost:3000/jwt", user, { withCredentials: true })
+          .then((res) => {
+            console.log(res.data);
+            if (res.data.success) {
+              navigate(location?.state ? location?.state : "/");
+            }
+          })
+          .catch((error) => console.log(error.message));
         if (loading) {
           return <span className="loading loading-dots loading-lg"></span>;
         }
@@ -58,9 +70,13 @@ const Login = () => {
           icon: "error",
           title: "Oops...",
           text:
-            `${
+            (`${
               error?.message === "Firebase: Error (auth/invalid-credential)."
-            }` && "Invalid Email/ Password, Please check your  credentials",
+            }` &&
+              "Invalid Email/ Password, Please check your  credentials") ||
+            (error?.message ===
+              "Firebase: Password should be at least 6 characters (auth/weak-password)." &&
+              "Password should be at least 6 characters"),
         });
       });
   };

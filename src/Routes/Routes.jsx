@@ -4,6 +4,9 @@ import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
 import AddJob from "../pages/AddJob/AddJob";
+import PrivateRoute from "./PrivateRoute";
+import Blogs from "../pages/Blogs/Blogs";
+import AllJobs from "../pages/AllJobs/AllJobs";
 
 const Router = createBrowserRouter([
   {
@@ -24,7 +27,19 @@ const Router = createBrowserRouter([
       },
       {
         path: "/addJob",
-        element: <AddJob></AddJob>,
+        element: (
+          <PrivateRoute>
+            <AddJob></AddJob>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/blogs",
+        element: <Blogs></Blogs>,
+      },
+      {
+        path: "/allJobs",
+        element: <AllJobs></AllJobs>,
       },
     ],
   },

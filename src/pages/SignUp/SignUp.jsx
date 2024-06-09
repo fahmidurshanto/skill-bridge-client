@@ -9,7 +9,7 @@ import axios from "axios";
 
 const SignUp = () => {
   const [error, setError] = useState(null);
-  const { createUser, googleSignIn } = useContext(AuthContext);
+  const { createUser, googleSignIn, loading } = useContext(AuthContext);
   const navigate = useNavigate();
   //   Google Sign in function
   const handleGoogleSignUp = () => {
@@ -21,7 +21,6 @@ const SignUp = () => {
           icon: "success",
           title: `Welcome ${res?.user?.displayName}. You signed up successfully`,
         });
-        navigate("/update");
       })
       .catch((error) => {
         setError(error?.message);
@@ -37,35 +36,50 @@ const SignUp = () => {
     const photo = form.photo_url.value;
     const password = form.password.value;
     createUser(email, password)
-      .then((response) => {
-        console.log(response.user);
-        updateProfile(response.user, {
+      .then((result) => {
+        const user = result.user;
+        updateProfile(user, {
           displayName: name,
           photoURL: photo,
         });
-        axios
-          .post("http://localhost:3000/users", response?.user)
-          .then((res) => {
-            console.log(res.data);
-            Swal.fire({
-              position: "top-end",
-              icon: "success",
-              title: `<h5 className="bg-gradient-to-r from-cyan-500 to-blue-500 ...">${response?.user?.displayName} is registered successfully!</h5>`,
-
-              showConfirmButton: false,
-              timer: 1500,
-            });
+        console.log(user);
+        axios.post("http://localhost:3000/users", user).then((res) => {
+          console.log(res.data);
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: `<h5 className="bg-gradient-to-r from-cyan-500 to-blue-500 ...">${user?.displayName} is registered successfully!</h5>`,
+            showConfirmButton: false,
+            timer: 1500,
           });
+        });
         navigate("/login");
+      })
+      .catch((error) => {
+        console.log(error);
+
+        setError(error);
         Swal.fire({
           position: "top-end",
-          icon: "success",
-          title: `${response?.user?.displayName} logged in successfully`,
+          icon: "error",
+          title: `${
+            error
+              ? (error.message ===
+                  "Firebase: Error (auth/email-already-in-use)." &&
+                  "Email already in use") ||
+                (error.message ===
+                  "Firebase: Error (auth/network-request-failed)." &&
+                  "Please check your network") ||
+                (error.message ===
+                  "Firebase: Password should be at least 6 characters (auth/weak-password)." &&
+                  "Password should be at least 6 characters") ||
+                error.message === ""
+              : ""
+          }`,
           showConfirmButton: false,
           timer: 1500,
         });
-      })
-      .catch((error) => console.log(error.message));
+      });
   };
 
   return (
@@ -139,6 +153,9 @@ const SignUp = () => {
                   (error.message ===
                     "Firebase: Error (auth/network-request-failed)." &&
                     "Please check your network") ||
+                  (error.message ===
+                    "Firebase: Password should be at least 6 characters (auth/weak-password)." &&
+                    "Password should be at least 6 characters") ||
                   error.message === ""
                 : ""}
             </p>

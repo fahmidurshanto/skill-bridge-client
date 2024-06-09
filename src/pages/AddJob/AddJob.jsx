@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { AuthContext } from "../../Authentication/AuthProvider/AuthProvider";
+import { Helmet } from "react-helmet";
 const AddJob = () => {
   const { user } = useContext(AuthContext);
   console.log(user);
@@ -8,6 +9,9 @@ const AddJob = () => {
   };
   return (
     <div className="">
+      <Helmet>
+        <title>Skill Bridge || Add your Job</title>
+      </Helmet>
       <h3 className="text-3xl font-semibold text-center mb-2 underline">
         <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 ... px-5 text-white rounded-md">
           {user?.displayName}
