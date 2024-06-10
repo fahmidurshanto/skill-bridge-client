@@ -10,6 +10,7 @@ const ApiProvider = ({ children }) => {
   const [remoteJobs, setRemoteJobs] = useState([]);
   const [hybridJobs, setHybridJobs] = useState([]);
   const [partTimeJobs, setPartTimeJobs] = useState([]);
+  const [categoryAllJobs, setCategoryAllJobs] = useState([]);
   const [allJobs, setAllJobs] = useState([]);
 
   //   onsite jobs
@@ -43,16 +44,24 @@ const ApiProvider = ({ children }) => {
       .catch((error) => console.log(error.message));
   }, []);
 
-  // all jobs
+  // all jobs from category tab
   useEffect(() => {
     axios
       .get("http://localhost:3000/jobs")
       .then((res) => {
         setJobs(res.data);
         const jobs = res.data.jobs;
-        setAllJobs(jobs);
+        setCategoryAllJobs(jobs);
       })
       .catch((err) => console.log(err));
+  }, []);
+
+  // All jobs api
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/allJobs")
+      .then((res) => setAllJobs(res.data))
+      .catch((error) => console.log(error.message));
   }, []);
 
   const jobsInfo = {

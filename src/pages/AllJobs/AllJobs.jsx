@@ -1,87 +1,63 @@
+// src/components/JobList.jsx
+import { useState, useEffect } from "react";
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
-const AllJobs = () => {
+const JobList = () => {
   const [jobs, setJobs] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
-  // Dummy data for demonstration purposes
   useEffect(() => {
     axios
-      .get("http://localhost:3000/allJobs")
-      .then((data) => setJobs(data.data))
-      .catch((error) => console.log(error.message));
-    // setJobs([
-    //   {
-    //     id: 1,
-    //     postedBy: "John Doe",
-    //     title: "Frontend Developer",
-    //     postingDate: "2023-06-01",
-    //     deadline: "2023-07-01",
-    //     salaryRange: "$60,000 - $80,000",
-    //   },
-    //   {
-    //     id: 2,
-    //     postedBy: "Jane Smith",
-    //     title: "Backend Developer",
-    //     postingDate: "2023-05-15",
-    //     deadline: "2023-06-15",
-    //     salaryRange: "$70,000 - $90,000",
-    //   },
-    // ]);
+      .get("http://localhost:3000/alljobs")
+      .then((response) => setJobs(response.data))
+      .catch((error) => console.error("Error fetching jobs:", error));
   }, []);
 
-  const handleSearch = (e) => {
-    setSearchTerm(e.target.value);
-  };
-
-  const filteredJobs = jobs.filter((job) => {
-    console.log(job);
-    job?.jobs[(0, 1, 2, 4)]?.title
-      .toLowerCase()
-      .includes(searchTerm.toLowerCase());
-  });
+  const filteredJobs = jobs.filter((job) =>
+    job.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div className="container mx-auto p-4">
-      <h2 className="text-3xl font-bold text-center my-10">All Jobs</h2>
+      <h1 className="text-2xl font-bold mb-4">All Jobs</h1>
       <input
         type="text"
-        placeholder="Search by Job Title"
         className="input input-bordered w-full mb-4"
+        placeholder="Search by job title..."
         value={searchTerm}
-        onChange={handleSearch}
+        onChange={(e) => setSearchTerm(e.target.value)}
       />
-      <div className="overflow-x-auto">
-        <table className="table table-zebra w-full">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Job Title</th>
-              <th>Posting Date</th>
-              <th>Application Deadline</th>
-              <th>Salary Range</th>
-              <th>Details</th>
+      <table className="table w-full">
+        <thead>
+          <tr>
+            <th>Posted By</th>
+            <th>Job Title</th>
+            <th>Posting Date</th>
+            <th>Application Deadline</th>
+            <th>Salary Range</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          {filteredJobs.map((job, index) => (
+            <tr key={index}>
+              <td>{job.postedBy}</td>
+              <td>{job.title}</td>
+              <td>{job.postingDate}</td>
+              <td>{job.deadline}</td>
+              <td>{job.salaryRange}</td>
+              <td>
+                <Link to={`/alljobs/${job._id}`}>
+                  <button className="btn btn-primary">View details</button>
+                </Link>
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            {filteredJobs.map((job) => (
-              <tr key={job.id}>
-                <td>{job.postedBy}</td>
-                <td>{job.title}</td>
-                <td>{job.postingDate}</td>
-                <td>{job.deadline}</td>
-                <td>{job.salaryRange}</td>
-                <td>
-                  <button className="btn btn-primary">Details</button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };
 
-export default AllJobs;
+export default JobList;

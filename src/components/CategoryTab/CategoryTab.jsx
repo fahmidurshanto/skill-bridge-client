@@ -169,7 +169,6 @@ const CategoryTab = () => {
               );
             })
           )}
-
           {onSiteJobs.map((onsiteJob) =>
             onsiteJob.jobs.map((job, idx) => {
               return (
