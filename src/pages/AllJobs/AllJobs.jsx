@@ -1,16 +1,19 @@
-// src/components/JobList.jsx
+// src/components/AllJobs.jsx
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-const JobList = () => {
+const AllJobs = () => {
   const [jobs, setJobs] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     axios
       .get("http://localhost:3000/alljobs")
-      .then((response) => setJobs(response.data))
+      .then((response) => {
+        console.log(response.data);
+        setJobs(response.data);
+      })
       .catch((error) => console.error("Error fetching jobs:", error));
   }, []);
 
@@ -60,4 +63,4 @@ const JobList = () => {
   );
 };
 
-export default JobList;
+export default AllJobs;

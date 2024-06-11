@@ -5,9 +5,11 @@ import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
 import AddJob from "../pages/AddJob/AddJob";
 import Blogs from "../pages/Blogs/Blogs";
-import AllJobs from "../pages/AllJobs/AllJobs";
 import JobDetails from "../pages/JobDetails/JobDetails";
 import MyJobs from "../pages/MyJobs/MyJobs";
+import PrivateRoute from "./PrivateRoute";
+import AllJobs from "../pages/AllJobs/AllJobs";
+import AppliedJobs from "../pages/AppliedJobs/AppliedJobs";
 
 const Router = createBrowserRouter([
   {
@@ -43,11 +45,23 @@ const Router = createBrowserRouter([
         loader: ({ params }) => {
           return fetch(`http://localhost:3000/alljobs/${params._id}`);
         },
-        element: <JobDetails></JobDetails>,
+        element: (
+          <PrivateRoute>
+            <JobDetails></JobDetails>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/myJobs",
-        element: <MyJobs></MyJobs>,
+        element: (
+          <PrivateRoute>
+            <MyJobs></MyJobs>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/appliedJobs",
+        element: <AppliedJobs></AppliedJobs>,
       },
     ],
   },

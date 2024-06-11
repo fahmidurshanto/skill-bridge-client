@@ -1,5 +1,4 @@
 const MyJob = ({ job }) => {
-  console.log(job);
   const {
     pictureUrl,
     title,
