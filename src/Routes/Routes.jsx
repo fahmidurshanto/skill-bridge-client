@@ -4,10 +4,10 @@ import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
 import AddJob from "../pages/AddJob/AddJob";
-import PrivateRoute from "./PrivateRoute";
 import Blogs from "../pages/Blogs/Blogs";
 import AllJobs from "../pages/AllJobs/AllJobs";
 import JobDetails from "../pages/JobDetails/JobDetails";
+import MyJobs from "../pages/MyJobs/MyJobs";
 
 const Router = createBrowserRouter([
   {
@@ -28,11 +28,7 @@ const Router = createBrowserRouter([
       },
       {
         path: "/addJob",
-        element: (
-          <PrivateRoute>
-            <AddJob></AddJob>
-          </PrivateRoute>
-        ),
+        element: <AddJob></AddJob>,
       },
       {
         path: "/blogs",
@@ -48,6 +44,10 @@ const Router = createBrowserRouter([
           return fetch(`http://localhost:3000/alljobs/${params._id}`);
         },
         element: <JobDetails></JobDetails>,
+      },
+      {
+        path: "/myJobs",
+        element: <MyJobs></MyJobs>,
       },
     ],
   },

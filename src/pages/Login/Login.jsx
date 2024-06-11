@@ -11,7 +11,7 @@ const Login = () => {
   const [error, setError] = useState(null);
   const { user, googleSignIn, login, loading } = useContext(AuthContext);
   const location = useLocation();
-  console.log(location);
+
   const navigate = useNavigate();
 
   //   Google Sign in function
