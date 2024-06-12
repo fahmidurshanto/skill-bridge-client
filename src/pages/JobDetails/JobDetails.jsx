@@ -3,6 +3,7 @@ import { useLoaderData } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../../Authentication/AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
+import emailjs from "@emailjs/browser";
 
 const JobDetails = () => {
   const [showModal, setShowModal] = useState(false);
@@ -22,9 +23,9 @@ const JobDetails = () => {
     postedBy = user?.displayName,
     title,
   } = job;
-  console.log(job);
 
-  const handleApply = () => {
+  const handleApply = (e) => {
+    e.preventDefault();
     const application = {
       user: { name: user?.displayName, email: user?.email },
       jobId: _id,
@@ -40,8 +41,6 @@ const JobDetails = () => {
       job_category: job_category,
     };
 
-    console.log("Submitting application:", application);
-
     axios
       .post("http://localhost:3000/apply", application, {
         withCredentials: true,
@@ -53,6 +52,40 @@ const JobDetails = () => {
           icon: "success",
           confirmButtonText: "OK",
         });
+
+        // EmailJS integration
+        emailjs
+          .send(
+            "service_dwv7bll",
+            "template_5ku2num",
+            {
+              job_title: title,
+              user_name: user?.displayName,
+              user_email: user?.email,
+              resume_link: resumeLink,
+            },
+            "ta1jOsUdFh0lK-tWQ"
+          )
+          .then(
+            (result) => {
+              console.log("Email sent successfully:", result.text);
+              Swal.fire({
+                title: "Application and Email sent successfully!",
+                icon: "success",
+                confirmButtonText: "OK",
+              });
+            },
+            (error) => {
+              console.error("Error sending email:", error.text);
+              Swal.fire({
+                title: "Application submitted, but email failed!",
+                text: `Email sending failed: ${error.text}`,
+                icon: "error",
+                confirmButtonText: "OK",
+              });
+            }
+          );
+
         setShowModal(false);
       })
       .catch((error) => {
@@ -107,7 +140,6 @@ const JobDetails = () => {
               <button
                 className="btn btn-primary"
                 onClick={() => {
-                  console.log("Apply button clicked");
                   setShowModal(true);
                 }}
               >
