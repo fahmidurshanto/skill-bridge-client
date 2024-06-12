@@ -85,9 +85,9 @@ const SignUp = () => {
   return (
     <div>
       <Helmet>
-        <title>Skill Bridge || Sign Up</title>
+        <title>Skill Bridge | Sign Up</title>
       </Helmet>
-      <h3 className="text-4xl text-center  pt-5  font-bold my-10 underline">
+      <h3 className="text-4xl text-center  pt-5  font-bold my-10 underline  animate__animated animate__heartBeat">
         Sign Up here
       </h3>
       <div className="grid md:grid-cols-2">

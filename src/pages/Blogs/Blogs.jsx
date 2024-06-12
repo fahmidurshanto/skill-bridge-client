@@ -4,7 +4,7 @@ const Blogs = () => {
   return (
     <div>
       <Helmet>
-        <title>Skill Bridge || Blogs</title>
+        <title>Skill Bridge | Blogs</title>
       </Helmet>
       <h2 className="text-3xl font-bold text-center my-10 p-3 animate__animated animate__rubberBand">
         Blogs

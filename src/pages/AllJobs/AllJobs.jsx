@@ -1,7 +1,7 @@
-// src/components/AllJobs.jsx
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const AllJobs = () => {
   const [jobs, setJobs] = useState([]);
@@ -23,7 +23,12 @@ const AllJobs = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">All Jobs</h1>
+      <Helmet>
+        <title>Skill Bridge | All Jobs</title>
+      </Helmet>
+      <h1 className="text-2xl font-bold mb-4 animate__animated animate__rubberBand">
+        All Jobs
+      </h1>
       <input
         type="text"
         className="input input-bordered w-full mb-4"

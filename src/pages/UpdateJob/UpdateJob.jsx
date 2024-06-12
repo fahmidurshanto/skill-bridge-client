@@ -1,20 +1,30 @@
-import { useContext } from "react";
-import { AuthContext } from "../../Authentication/AuthProvider/AuthProvider";
-import { useState } from "react";
+import axios from "axios";
+import { useContext, useState } from "react";
+import { Helmet } from "react-helmet";
+import Swal from "sweetalert2";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { registerLocale } from "react-datepicker";
-import { es } from "date-fns/locale/es";
-import axios from "axios";
-import Swal from "sweetalert2";
-import { Helmet } from "react-helmet";
-registerLocale("es", es);
+import { AuthContext } from "../../Authentication/AuthProvider/AuthProvider";
+import { useLoaderData } from "react-router-dom";
 
-const AddJob = () => {
+const UpdateJob = () => {
   const [startDate, setStartDate] = useState(new Date());
   const { user } = useContext(AuthContext);
+  const job = useLoaderData();
+  const {
+    applicants,
+    applicationDeadline,
+    category,
+    description,
+    pictureUrl,
+    postingDate,
+    salaryRange,
+    title,
+    userName,
+    _id,
+  } = job;
 
-  const handleAddJob = (e) => {
+  const handleUpdateJob = async (e) => {
     e.preventDefault();
     const form = e.target;
     const bannerURL = form.bannerURL.value;
@@ -42,27 +52,44 @@ const AddJob = () => {
     };
 
     axios
-      .post("http://localhost:3000/myjobs", newJob)
+      .put(
+        `http://localhost:3000/myjobs/${_id}`, // URL
+        newJob, // Data to be sent
+        {
+          withCredentials: true, // Include credentials
+          headers: {
+            Authorization: `Bearer ${user?.token}`, // Include token if necessary
+          },
+        }
+      )
       .then((response) => {
-        const addedJob = response.data;
-        if (addedJob.insertedId) {
+        const updatedJob = response.data;
+        console.log(updatedJob);
+        if (updatedJob.success) {
           Swal.fire({
             position: "top-end",
             icon: "success",
-            title: "Job added successfully!",
+            title: "Job updated successfully!",
             showConfirmButton: false,
             timer: 1500,
           });
         }
       })
       .catch((error) => {
-        console.error("Error adding job:", error);
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: error?.message,
+          confirmButtonText: "Ok",
+        });
+        console.error("Error updating job:", error?.message);
       });
   };
+
   return (
     <div className="flex justify-center items-center">
       <Helmet>
-        <title>Skill Bridge | Add your Job</title>
+        <title>Skill Bridge | Update your Job</title>
       </Helmet>
       <img
         src="https://i.ibb.co/mNypSBw/undraw-add-information-j2wg.png"
@@ -70,9 +97,9 @@ const AddJob = () => {
       />
       <div>
         <h3 className="text-3xl font-bold underline my-10 animate__animated animate__rubberBand">
-          Add your Job here
+          Update your Job information
         </h3>
-        <form className="grid grid-cols-2 gap-8" onSubmit={handleAddJob}>
+        <form className="grid grid-cols-2 gap-8" onSubmit={handleUpdateJob}>
           {/* Banner URL input field */}
           <div className="w-full">
             <label htmlFor="bannerURL" className="font-bold">
@@ -84,6 +111,7 @@ const AddJob = () => {
               className="p-3 shadow-sm shadow-gray-500 my-2 rounded-md w-full"
               type="text"
               name="bannerURL"
+              defaultValue={pictureUrl}
             />
           </div>
           {/* Job TItie input field */}
@@ -94,6 +122,7 @@ const AddJob = () => {
             <br />
             <input
               placeholder="Job title"
+              defaultValue={title}
               className="p-3 shadow-sm shadow-gray-500 my-2 rounded-md"
               name="title"
             />
@@ -122,6 +151,7 @@ const AddJob = () => {
               className="p-3 shadow-sm shadow-gray-500 my-2 rounded-md"
               type="text"
               name="category"
+              defaultValue={category}
             />
           </div>
           {/* Salary range field */}
@@ -135,6 +165,7 @@ const AddJob = () => {
               className="p-3 shadow-sm shadow-gray-500 my-2 rounded-md"
               type="text"
               name="salary"
+              defaultValue={salaryRange}
             />
           </div>
 
@@ -162,7 +193,8 @@ const AddJob = () => {
               className="p-3 shadow-sm shadow-gray-500 my-2 rounded-md"
               type="number"
               name="applicants"
-              defaultValue={0}
+              defaultValue={applicants}
+              readOnly
             />
           </div>
           {/* Job description field */}
@@ -176,12 +208,14 @@ const AddJob = () => {
               className="p-3 shadow-sm shadow-gray-500 my-2 rounded-md"
               type="text"
               name="description"
+              defaultValue={description}
             />
           </div>
           {/* Submit button */}
           <input
             className="p-3 shadow-sm shadow-gray-500 my-2 rounded-md col-span-2"
             type="submit"
+            value="Update"
           />
         </form>
       </div>
@@ -189,4 +223,4 @@ const AddJob = () => {
   );
 };
 
-export default AddJob;
+export default UpdateJob;

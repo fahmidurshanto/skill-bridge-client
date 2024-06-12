@@ -10,16 +10,16 @@ const Navbar = () => {
     <div className="lg:flex">
       {/* Home, Add Book, All Books, Borrowed
 Books, and Login */}
-      <li className="list-none font-semibold hover:bg-yellow-800 mx-3 p-1 rounded-e-badge  hover:text-white">
+      <li className="list-none font-semibold hover:bg-yellow-800 mx-3 p-1 rounded-md hover:text-white">
         <NavLink to="/">Home</NavLink>
       </li>
-      <li className="list-none font-semibold hover:bg-yellow-800 mx-3 p-1 rounded-e-badge   hover:text-white">
+      <li className="list-none font-semibold hover:bg-yellow-800 mx-3 p-1 rounded-md hover:text-white">
         <NavLink to="/addJob">Add Job</NavLink>
       </li>
-      <li className="list-none font-semibold hover:bg-yellow-800 mx-3 p-1 rounded-e-badge  hover:text-white">
+      <li className="list-none font-semibold hover:bg-yellow-800 mx-3 p-1 rounded-md  hover:text-white">
         <NavLink to="/allJobs">All Jobs</NavLink>
       </li>
-      <li className="list-none font-semibold hover:bg-yellow-800 mx-3 p-1 rounded-e-badge  hover:text-white">
+      <li className="list-none font-semibold hover:bg-yellow-800 mx-3 p-1 rounded-md  hover:text-white">
         <NavLink to="/appliedJobs">Applied Jobs</NavLink>
       </li>
       <li className="list-none font-semibold hover:bg-yellow-800 mx-3 p-1 rounded-md hover:text-white">
@@ -30,7 +30,7 @@ Books, and Login */}
       </li>
       <li
         onClick={logout}
-        className="list-none font-semibold hover:bg-yellow-800 mx-3 p-1 rounded-e-badge  hover:text-white cursor-pointer"
+        className="list-none font-semibold hover:bg-green-500 mx-3 p-1 rounded-md  hover:text-white cursor-pointer"
       >
         Logout
       </li>

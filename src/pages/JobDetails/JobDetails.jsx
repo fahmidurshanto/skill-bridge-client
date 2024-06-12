@@ -10,13 +10,34 @@ const JobDetails = () => {
   const job = useLoaderData();
   const { user } = useContext(AuthContext);
 
-  const { applicants, bannerUrl, job_details, salaryRange, _id } = job;
+  const {
+    applicants,
+    bannerUrl,
+    salaryRange,
+    _id,
+    deadline,
+    job_category,
+    job_details,
+    postingDate,
+    postedBy = user?.displayName,
+    title,
+  } = job;
+  console.log(job);
 
   const handleApply = () => {
     const application = {
       user: { name: user?.displayName, email: user?.email },
       jobId: _id,
-      resumeLink,
+      resumeLink: resumeLink,
+      applicants: applicants,
+      bannerUrl: bannerUrl,
+      job_details: job_details,
+      salaryRange: salaryRange,
+      postedBy: postedBy,
+      _id: _id,
+      title: title,
+      postingDate: postingDate,
+      job_category: job_category,
     };
 
     console.log("Submitting application:", application);
@@ -47,8 +68,8 @@ const JobDetails = () => {
       });
   };
 
-  const isEmployer = job.postedBy === user.email;
-  const isDeadlinePassed = Date.now() > new Date(job.deadline).getTime();
+  const isEmployer = job?.postedBy === user.email;
+  const isDeadlinePassed = Date.now() > new Date(deadline).getTime();
 
   return (
     <div className="max-w-4xl mx-auto p-4">

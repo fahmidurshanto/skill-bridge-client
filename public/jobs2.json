@@ -262,5 +262,60 @@
     "job_category": "Remote Job",
     "job_details": "Develop and implement marketing campaigns. Requires experience with digital marketing tools and strategies.",
     "bannerUrl": "https://via.placeholder.com/600x200"
+  },
+  {
+    "title": "Part-Time Web Developer",
+    "postingDate": "2024-06-01",
+    "deadline": "2024-06-30",
+    "salaryRange": "$30 - $40 per hour",
+    "applicants": 15,
+    "viewDetails": "See details",
+    "job_category": "Part Time",
+    "job_details": "Develop and maintain websites. Requires knowledge of HTML, CSS, and JavaScript.",
+    "bannerUrl": "https://via.placeholder.com/600x200"
+  },
+  {
+    "title": "Part-Time Graphic Designer",
+    "postingDate": "2024-06-02",
+    "deadline": "2024-07-01",
+    "salaryRange": "$25 - $35 per hour",
+    "applicants": 12,
+    "viewDetails": "See details",
+    "job_category": "Part Time",
+    "job_details": "Create design assets for web and print. Requires proficiency in Adobe Creative Suite.",
+    "bannerUrl": "https://via.placeholder.com/600x200"
+  },
+  {
+    "title": "Part-Time Social Media Manager",
+    "postingDate": "2024-06-03",
+    "deadline": "2024-07-02",
+    "salaryRange": "$20 - $30 per hour",
+    "applicants": 20,
+    "viewDetails": "See details",
+    "job_category": "Part Time",
+    "job_details": "Manage social media accounts and create content. Requires knowledge of social media marketing.",
+    "bannerUrl": "https://via.placeholder.com/600x200"
+  },
+  {
+    "title": "Part-Time Content Writer",
+    "postingDate": "2024-06-04",
+    "deadline": "2024-07-03",
+    "salaryRange": "$20 - $25 per hour",
+    "applicants": 22,
+    "viewDetails": "See details",
+    "job_category": "Part Time",
+    "job_details": "Write and edit articles and blog posts. Requires strong writing and editing skills.",
+    "bannerUrl": "https://via.placeholder.com/600x200"
+  },
+  {
+    "title": "Part-Time Customer Service Representative",
+    "postingDate": "2024-06-05",
+    "deadline": "2024-07-04",
+    "salaryRange": "$18 - $22 per hour",
+    "applicants": 18,
+    "viewDetails": "See details",
+    "job_category": "Part Time",
+    "job_details": "Assist customers with inquiries and issues. Requires excellent communication and problem-solving skills.",
+    "bannerUrl": "https://via.placeholder.com/600x200"
   }
 ]

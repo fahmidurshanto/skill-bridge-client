@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, useParams } from "react-router-dom";
 import Root from "../Layout/Root/Root";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
@@ -10,6 +10,7 @@ import MyJobs from "../pages/MyJobs/MyJobs";
 import PrivateRoute from "./PrivateRoute";
 import AllJobs from "../pages/AllJobs/AllJobs";
 import AppliedJobs from "../pages/AppliedJobs/AppliedJobs";
+import UpdateJob from "../pages/UpdateJob/UpdateJob";
 
 const Router = createBrowserRouter([
   {
@@ -51,6 +52,7 @@ const Router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+
       {
         path: "/myJobs",
         element: (
@@ -61,7 +63,19 @@ const Router = createBrowserRouter([
       },
       {
         path: "/appliedJobs",
-        element: <AppliedJobs></AppliedJobs>,
+        element: (
+          <PrivateRoute>
+            <AppliedJobs></AppliedJobs>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/update/:id",
+        loader: ({ params }) => {
+          // Fetch the job details using the ID from the URL parameters
+          return fetch(`http://localhost:3000/myJobs/${params.id}`);
+        },
+        element: <UpdateJob></UpdateJob>,
       },
     ],
   },

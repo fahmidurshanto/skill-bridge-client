@@ -28,7 +28,18 @@ const Login = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        navigate("/");
+        axios
+          .post("http://localhost:3000/jwt", user, { withCredentials: true })
+          .then((res) => {
+            console.log(res.data);
+            if (res.data.success) {
+              navigate(location?.state ? location?.state : "/");
+            }
+          })
+          .catch((error) => console.log(error.message));
+        if (loading) {
+          return <span className="loading loading-dots loading-lg"></span>;
+        }
       })
       .catch((err) => {
         setError(err?.message);
@@ -84,7 +95,7 @@ const Login = () => {
   return (
     <div>
       <Helmet>
-        <title>Skill Bridge || Login</title>
+        <title>Skill Bridge | Login</title>
       </Helmet>
       {user ? (
         <h2 className="flex justify-center items-center h-[70vh] text-3xl text-purple-600 animate__animated animate__bounce">
@@ -93,7 +104,7 @@ const Login = () => {
         </h2>
       ) : (
         <div className="">
-          <h3 className="text-4xl text-center  mb-5 pt-5 font-bold underline">
+          <h3 className="text-4xl text-center  mb-5 pt-5 font-bold underline animate__animated animate__heartBeat">
             Login here
           </h3>
           <div className="grid md:grid-cols-2">

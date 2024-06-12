@@ -23,7 +23,7 @@ const Banner = () => {
   }, [error]);
 
   return (
-    <div className="h-[90vh]">
+    <div className="h-[90vh] ">
       <Carousel infiniteLoop autoPlay autoFocus>
         {banners.map((banner) => {
           return (
