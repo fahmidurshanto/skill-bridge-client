@@ -4,6 +4,7 @@ import axios from "axios";
 import { AuthContext } from "../../Authentication/AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 import emailjs from "@emailjs/browser";
+import { Helmet } from "react-helmet";
 
 const JobDetails = () => {
   const [showModal, setShowModal] = useState(false);
@@ -106,6 +107,9 @@ const JobDetails = () => {
 
   return (
     <div className="max-w-4xl mx-auto p-4">
+      <Helmet>
+        <title>Skill Bridge | {title}</title>
+      </Helmet>
       <div className="bg-white shadow-lg rounded-lg overflow-hidden">
         <img
           src={bannerUrl}

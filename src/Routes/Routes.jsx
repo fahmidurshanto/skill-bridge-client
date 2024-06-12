@@ -1,4 +1,4 @@
-import { createBrowserRouter, useParams } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import Root from "../Layout/Root/Root";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
@@ -11,11 +11,13 @@ import PrivateRoute from "./PrivateRoute";
 import AllJobs from "../pages/AllJobs/AllJobs";
 import AppliedJobs from "../pages/AppliedJobs/AppliedJobs";
 import UpdateJob from "../pages/UpdateJob/UpdateJob";
+import Error from "../pages/Error/Error";
 
 const Router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
+    errorElement: <Error></Error>,
     children: [
       {
         path: "/",
