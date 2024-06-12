@@ -1,4 +1,4 @@
-# Job Board Project
+# Skill Bridge Client
 
 This project is a client-side job board application built with React and various frontend technologies. It allows users to create accounts, browse job listings in different categories, post their own jobs, apply for jobs, and manage their posted jobs.
 
