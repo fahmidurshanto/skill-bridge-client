@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { useLoaderData, useNavigate } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../../Authentication/AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
@@ -12,7 +12,6 @@ const JobDetails = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const job = useLoaderData();
   const { user } = useContext(AuthContext);
-  const navigate = useNavigate();
 
   const {
     applicants,
@@ -40,29 +39,61 @@ const JobDetails = () => {
       job_details: job_details,
       salaryRange: salaryRange,
       postedBy: postedBy,
-      ownerEmail: user?.email, // owner email
       _id: _id,
       title: title,
       postingDate: postingDate,
       job_category: job_category,
     };
 
-    axios
-      .post(`http://localhost:3000/apply/${_id},`, application)
-      .then((res) => {
-        if (res.data.insertedId) {
-          navigate("/appliedJobs");
-          Swal.fire({
-            title: "Application Sent!",
-            text: "Your application has been sent successfully",
-            icon: "success",
-            confirmButtonText: "Okay",
-          });
-        }
+    try {
+      const response = await axios.post(
+        " http://localhost:3000/apply",
+        application,
+        { withCredentials: true }
+      );
+
+      console.log("Application submitted successfully:", response.data);
+      Swal.fire({
+        title: "Application submitted successfully!",
+        icon: "success",
+        confirmButtonText: "OK",
       });
+
+      await emailjs.send(
+        "service_dwv7bll",
+        "template_5ku2num",
+        {
+          job_title: title,
+          user_name: user?.displayName,
+          user_email: user?.email,
+          resume_link: resumeLink,
+        },
+        "ta1jOsUdFh0lK-tWQ"
+      );
+
+      Swal.fire({
+        title: "Application and Email sent successfully!",
+        icon: "success",
+        confirmButtonText: "OK",
+      });
+
+      setShowModal(false);
+    } catch (error) {
+      console.error("Failed to submit application:", error);
+      Swal.fire({
+        title: "Failed to submit application!",
+        text: `Failed to submit application: ${
+          error.response?.data.message || error?.message
+        }`,
+        icon: "error",
+        confirmButtonText: "OK",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
-  const isEmployer = job?.postedBy === user?.email;
+  const isEmployer = job?.postedBy === user.email;
   const isDeadlinePassed = Date.now() > new Date(deadline).getTime();
 
   return (
