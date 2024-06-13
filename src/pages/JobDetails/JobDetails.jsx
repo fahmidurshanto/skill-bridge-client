@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../../Authentication/AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
@@ -9,8 +9,10 @@ import { Helmet } from "react-helmet";
 const JobDetails = () => {
   const [showModal, setShowModal] = useState(false);
   const [resumeLink, setResumeLink] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const job = useLoaderData();
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const {
     applicants,
@@ -25,8 +27,10 @@ const JobDetails = () => {
     title,
   } = job;
 
-  const handleApply = (e) => {
+  const handleApply = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
+
     const application = {
       user: { name: user?.displayName, email: user?.email },
       jobId: _id,
@@ -36,6 +40,7 @@ const JobDetails = () => {
       job_details: job_details,
       salaryRange: salaryRange,
       postedBy: postedBy,
+      ownerEmail: user?.email, // owner email
       _id: _id,
       title: title,
       postingDate: postingDate,
@@ -43,66 +48,21 @@ const JobDetails = () => {
     };
 
     axios
-      .post("http://localhost:3000/apply", application, {
-        withCredentials: true,
-      })
-      .then((response) => {
-        console.log("Application submitted successfully:", response.data);
-        Swal.fire({
-          title: "Application submitted successfully!",
-          icon: "success",
-          confirmButtonText: "OK",
-        });
-
-        // EmailJS integration
-        emailjs
-          .send(
-            "service_dwv7bll",
-            "template_5ku2num",
-            {
-              job_title: title,
-              user_name: user?.displayName,
-              user_email: user?.email,
-              resume_link: resumeLink,
-            },
-            "ta1jOsUdFh0lK-tWQ"
-          )
-          .then(
-            (result) => {
-              console.log("Email sent successfully:", result.text);
-              Swal.fire({
-                title: "Application and Email sent successfully!",
-                icon: "success",
-                confirmButtonText: "OK",
-              });
-            },
-            (error) => {
-              console.error("Error sending email:", error.text);
-              Swal.fire({
-                title: "Application submitted, but email failed!",
-                text: `Email sending failed: ${error.text}`,
-                icon: "error",
-                confirmButtonText: "OK",
-              });
-            }
-          );
-
-        setShowModal(false);
-      })
-      .catch((error) => {
-        console.error("Failed to submit application:", error);
-        Swal.fire({
-          title: "Failed to submit application!",
-          text: `Failed to submit application: ${
-            error.response?.data.message || error?.message
-          }`,
-          icon: "error",
-          confirmButtonText: "OK",
-        });
+      .post(`http://localhost:3000/apply/${_id},`, application)
+      .then((res) => {
+        if (res.data.insertedId) {
+          navigate("/appliedJobs");
+          Swal.fire({
+            title: "Application Sent!",
+            text: "Your application has been sent successfully",
+            icon: "success",
+            confirmButtonText: "Okay",
+          });
+        }
       });
   };
 
-  const isEmployer = job?.postedBy === user.email;
+  const isEmployer = job?.postedBy === user?.email;
   const isDeadlinePassed = Date.now() > new Date(deadline).getTime();
 
   return (
@@ -118,11 +78,6 @@ const JobDetails = () => {
         />
         <div className="p-6">
           <div className="flex items-center">
-            <img
-              src={job?.companyLogoUrl}
-              alt="Company Logo"
-              className="h-16 w-16 rounded-full"
-            />
             <h2 className="text-2xl font-semibold ml-4">{job?.title}</h2>
           </div>
           <div className="mt-4">
@@ -143,9 +98,7 @@ const JobDetails = () => {
             <div className="mt-6">
               <button
                 className="btn btn-primary"
-                onClick={() => {
-                  setShowModal(true);
-                }}
+                onClick={() => setShowModal(true)}
               >
                 Apply Now
               </button>
@@ -201,7 +154,11 @@ const JobDetails = () => {
               >
                 Cancel
               </button>
-              <button className="btn btn-primary" onClick={handleApply}>
+              <button
+                className="btn btn-primary"
+                onClick={handleApply}
+                disabled={isSubmitting}
+              >
                 Submit Application
               </button>
             </div>

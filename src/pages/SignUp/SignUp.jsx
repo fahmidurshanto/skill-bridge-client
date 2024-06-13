@@ -43,7 +43,7 @@ const SignUp = () => {
           photoURL: photo,
         });
         console.log(user);
-        axios.post("http://localhost:3000/users", user).then((res) => {
+        axios.post(" http://localhost:3000/users", user).then((res) => {
           console.log(res.data);
           Swal.fire({
             position: "top-end",

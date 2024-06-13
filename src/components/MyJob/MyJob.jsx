@@ -18,7 +18,7 @@ const MyJob = ({ job }) => {
 
   const handleDelete = () => {
     axios
-      .delete(`http://localhost:3000/myJobs/${_id}`)
+      .delete(` http://localhost:3000/myJobs/${_id}`)
       .then((response) => {
         console.log(response.data);
         if (response.status === 200) {

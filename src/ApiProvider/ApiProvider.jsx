@@ -16,14 +16,14 @@ const ApiProvider = ({ children }) => {
   //   onsite jobs
   useEffect(() => {
     axios
-      .get("http://localhost:3000/on_site_jobs")
+      .get(" http://localhost:3000/on_site_jobs")
       .then((res) => setOnSiteJobs(res.data))
       .catch((error) => console.log(error.message));
   }, []);
   //   remote jobs
   useEffect(() => {
     axios
-      .get("http://localhost:3000/remote_jobs")
+      .get(" http://localhost:3000/remote_jobs")
       .then((res) => setRemoteJobs(res.data))
       .catch((error) => console.log(error.message));
   }, []);
@@ -31,7 +31,7 @@ const ApiProvider = ({ children }) => {
   //   hybrid jobs
   useEffect(() => {
     axios
-      .get("http://localhost:3000/hybrid_jobs")
+      .get(" http://localhost:3000/hybrid_jobs")
       .then((res) => setHybridJobs(res.data))
       .catch((error) => console.log(error.message));
   }, []);
@@ -39,7 +39,7 @@ const ApiProvider = ({ children }) => {
   //   part time jobs
   useEffect(() => {
     axios
-      .get("http://localhost:3000/part_time_jobs")
+      .get(" http://localhost:3000/part_time_jobs")
       .then((res) => setPartTimeJobs(res.data))
       .catch((error) => console.log(error.message));
   }, []);
@@ -47,7 +47,7 @@ const ApiProvider = ({ children }) => {
   // all jobs from category tab
   useEffect(() => {
     axios
-      .get("http://localhost:3000/jobs")
+      .get(" http://localhost:3000/jobs")
       .then((res) => {
         setJobs(res.data);
         const jobs = res.data.jobs;
@@ -59,7 +59,7 @@ const ApiProvider = ({ children }) => {
   // All jobs api
   useEffect(() => {
     axios
-      .get("http://localhost:3000/allJobs")
+      .get(" http://localhost:3000/allJobs")
       .then((res) => setAllJobs(res.data))
       .catch((error) => console.log(error.message));
   }, []);

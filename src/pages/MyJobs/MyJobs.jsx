@@ -6,7 +6,7 @@ import { Helmet } from "react-helmet";
 const MyJobs = () => {
   const [myJobs, setMyJobs] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:3000/myJobs").then((response) => {
+    axios.get(" http://localhost:3000/myJobs").then((response) => {
       setMyJobs(response.data);
     });
   }, []);

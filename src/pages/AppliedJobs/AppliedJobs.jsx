@@ -13,9 +13,7 @@ const AppliedJobs = () => {
   useEffect(() => {
     if (user?.email) {
       axios
-        .get("http://localhost:3000/apply", {
-          withCredentials: true,
-        })
+        .get(" http://localhost:3000/apply")
         .then((response) => {
           console.log(response.data);
           setAppliedJobs(response.data);

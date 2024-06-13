@@ -37,12 +37,13 @@ const AddJob = () => {
       postedBy,
       description: jobDescription,
       postingDate,
+      ownerEmail: user?.email,
       applicationDeadline: deadline,
       applicants: totalApplicants,
     };
 
     axios
-      .post("http://localhost:3000/myjobs", newJob)
+      .post(" http://localhost:3000/myjobs", newJob)
       .then((response) => {
         const addedJob = response.data;
         if (addedJob.insertedId) {

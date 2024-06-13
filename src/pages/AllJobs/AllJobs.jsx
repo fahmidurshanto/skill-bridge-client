@@ -9,7 +9,7 @@ const AllJobs = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/alljobs")
+      .get(" http://localhost:3000/alljobs")
       .then((response) => {
         console.log(response.data);
         setJobs(response.data);

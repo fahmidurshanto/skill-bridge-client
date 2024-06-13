@@ -46,7 +46,7 @@ const Router = createBrowserRouter([
       {
         path: "/alljobs/:_id",
         loader: ({ params }) => {
-          return fetch(`http://localhost:3000/alljobs/${params._id}`);
+          return fetch(` http://localhost:3000/alljobs/${params._id}`);
         },
         element: (
           <PrivateRoute>
@@ -75,7 +75,7 @@ const Router = createBrowserRouter([
         path: "/update/:id",
         loader: ({ params }) => {
           // Fetch the job details using the ID from the URL parameters
-          return fetch(`http://localhost:3000/myJobs/${params.id}`);
+          return fetch(` http://localhost:3000/myJobs/${params.id}`);
         },
         element: <UpdateJob></UpdateJob>,
       },

@@ -9,7 +9,7 @@ const Banner = () => {
   const [error, setError] = useState(null);
   useEffect(() => {
     axios
-      .get("http://localhost:3000/banner")
+      .get(" http://localhost:3000/banner")
       .then((res) => setBanners(res?.data))
       .catch((err) => {
         setError(err.message);
