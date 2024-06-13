@@ -2,6 +2,18 @@
 
 This project is a client-side job board application built with React and various frontend technologies. It allows users to create accounts, browse job listings in different categories, post their own jobs, apply for jobs, and manage their posted jobs.
 
+## Hosting URL
+
+https://skill-bridge-6471c.firebaseapp.com/
+
+## Client side repository
+
+https://github.com/fahmidurshanto/skill-bridge-client
+
+## Server side repository
+
+https://github.com/fahmidurshanto/skill-bridge-server
+
 ## Features
 
 - **User Authentication:**
