@@ -47,7 +47,7 @@ const JobDetails = () => {
 
     try {
       const response = await axios.post(
-        " http://localhost:3000/apply",
+        " https://skill-bridge-server.onrender.com/apply",
         application,
         { withCredentials: true }
       );

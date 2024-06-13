@@ -43,16 +43,18 @@ const SignUp = () => {
           photoURL: photo,
         });
         console.log(user);
-        axios.post(" http://localhost:3000/users", user).then((res) => {
-          console.log(res.data);
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: `<h5 className="bg-gradient-to-r from-cyan-500 to-blue-500 ...">${user?.displayName} is registered successfully!</h5>`,
-            showConfirmButton: false,
-            timer: 1500,
+        axios
+          .post(" https://skill-bridge-server.onrender.com/users", user)
+          .then((res) => {
+            console.log(res.data);
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: `<h5 className="bg-gradient-to-r from-cyan-500 to-blue-500 ...">${user?.displayName} is registered successfully!</h5>`,
+              showConfirmButton: false,
+              timer: 1500,
+            });
           });
-        });
         navigate("/login");
       })
       .catch((error) => {

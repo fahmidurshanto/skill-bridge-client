@@ -9,7 +9,7 @@ const AllJobs = () => {
 
   useEffect(() => {
     axios
-      .get(" http://localhost:3000/alljobs")
+      .get(" https://skill-bridge-server.onrender.com/alljobs")
       .then((response) => {
         console.log(response.data);
         setJobs(response.data);

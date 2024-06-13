@@ -13,7 +13,7 @@ const AppliedJobs = () => {
   useEffect(() => {
     if (user?.email) {
       axios
-        .get(" http://localhost:3000/apply")
+        .get(" https://skill-bridge-server.onrender.com/apply")
         .then((response) => {
           console.log(response.data);
           setAppliedJobs(response.data);

@@ -43,7 +43,7 @@ const AddJob = () => {
     };
 
     axios
-      .post(" http://localhost:3000/myjobs", newJob)
+      .post(" https://skill-bridge-server.onrender.com/myjobs", newJob)
       .then((response) => {
         const addedJob = response.data;
         if (addedJob.insertedId) {

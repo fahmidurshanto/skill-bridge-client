@@ -53,7 +53,7 @@ const UpdateJob = () => {
 
     axios
       .put(
-        ` http://localhost:3000/myjobs/${_id}`, // URL
+        ` https://skill-bridge-server.onrender.com/myjobs/${_id}`, // URL
         newJob, // Data to be sent
         {
           withCredentials: true, // Include credentials

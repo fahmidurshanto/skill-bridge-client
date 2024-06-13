@@ -6,9 +6,11 @@ import { Helmet } from "react-helmet";
 const MyJobs = () => {
   const [myJobs, setMyJobs] = useState([]);
   useEffect(() => {
-    axios.get(" http://localhost:3000/myJobs").then((response) => {
-      setMyJobs(response.data);
-    });
+    axios
+      .get(" https://skill-bridge-server.onrender.com/myJobs")
+      .then((response) => {
+        setMyJobs(response.data);
+      });
   }, []);
 
   return (

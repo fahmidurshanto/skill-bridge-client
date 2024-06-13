@@ -29,7 +29,7 @@ const Login = () => {
           timer: 1500,
         });
         axios
-          .post(" http://localhost:3000/jwt", user, {
+          .post(" https://skill-bridge-server.onrender.com/jwt", user, {
             withCredentials: true,
           })
           .then((res) => {
@@ -65,7 +65,7 @@ const Login = () => {
           timer: 1500,
         });
         axios
-          .post(" http://localhost:3000/jwt", user, {
+          .post(" https://skill-bridge-server.onrender.com/jwt", user, {
             withCredentials: true,
           })
           .then((res) => {
